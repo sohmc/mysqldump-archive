@@ -1,0 +1,12 @@
+language: node_js
+
+node_js:
+    - "8.10"
+
+deploy:
+    provider: lambda
+    function_name: archive_mysqldumps
+    region: "us-east-1"
+    role: "arn:aws:iam::426869176820:role/LambdaGalacticaS3"
+    runtime: "nodejs8.10"
+    handler_name: "handler"
