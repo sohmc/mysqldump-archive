@@ -45,22 +45,24 @@ exports.handler = async (event, context) => {
                     }
                 }
 
-                const copyParams = {
-                    CopySource: "/" + params.Bucket + "/" + oldest_object.Key,
-                    Bucket: "mikesoh.com-galactica-backup",
-                    Key: oldest_object.Key.replace(params.Prefix, 'mysql-backups'),
-                    ServerSideEncryption: "AES256"
-                };
-            
-                console.log('copyParams', copyParams);
-                await s3.copyObject(copyParams, function(copyErr, copyData) {
-                    if (err) console.log(err, err.stack);
-                    else console.log(data);
-                }).promise;
             } else {
                 console.log("No oldest object but the event object.")
             }
         }
     }).promise();
-    
+
+    if (oldest_object) {    
+        const copyParams = {
+            CopySource: "/" + params.Bucket + "/" + oldest_object.Key,
+            Bucket: "mikesoh.com-galactica-backup",
+            Key: oldest_object.Key.replace(params.Prefix, 'mysql-backups'),
+            ServerSideEncryption: "AES256"
+        };
+
+        console.log('copyParams', copyParams);
+        await s3.copyObject(copyParams, function(copyErr, copyData) {
+            if (err) console.log(err, err.stack);
+            else console.log(data);
+        }).promise;
+    }
 };
