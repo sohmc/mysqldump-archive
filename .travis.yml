@@ -7,14 +7,6 @@ branches:
     only:
         - /.*/
 
-cache:
-    directories:
-        - node_modules
-
-script:
-    - npm install -g serverless
-    - sls deploy
-
 deploy:
     provider: lambda
     function_name: archive_mysqldumps
