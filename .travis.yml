@@ -3,6 +3,10 @@ language: node_js
 node_js:
     - "8.10"
 
+branches:
+    only:
+        - /.*/
+
 deploy:
     provider: lambda
     function_name: archive_mysqldumps
