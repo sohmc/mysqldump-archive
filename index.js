@@ -48,7 +48,7 @@ exports.handler = async (event, context) => {
                 const copyParams = {
                     CopySource: "/" + params.Bucket + "/" + oldest_object.Key,
                     Bucket: "mikesoh.com-galactica-backup",
-                    Key: oldest_object.Key.replace(params.Prefix, 'mysql-backups')
+                    Key: oldest_object.Key.replace(params.Prefix, 'mysql-backups'),
                     ServerSideEncryption: "AES256"
                 };
             
