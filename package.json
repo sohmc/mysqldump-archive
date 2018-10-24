@@ -1,0 +1,20 @@
+{
+  "name": "mysqldump-archive",
+  "description": "Archives oldest mysqldump file to a new S3 location.",
+  "version": "0.1",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sohmc/mysqldump-archive"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "GPLv3",
+  "bugs": {
+    "url": "https://github.com/sohmc/mysqldump-archive/issues"
+  },
+  "homepage": "https://github.com/sohmc/mysqldump-archive"
+}
