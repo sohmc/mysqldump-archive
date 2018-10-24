@@ -29,38 +29,34 @@ exports.handler = async (event, context) => {
         } else {
             console.log(data)
             console.log("Key Count: ", data.KeyCount)
-            
-            for (var i = 0; i < data.KeyCount; i++) {
-                var obj = data.Contents[i];
-                
-                console.log(i, ": " + obj.Key)
-                console.log(i, ": " + obj.LastModified)
-                
-                if (obj.Key == event.Records[0].s3.object.key) {
-                    console.log("Got event object.  Skipping...");
-                } else {
+
+            // If there is more than one file, then loop through.
+            if (data.KeyCount > 1) {
+                for (var i = 0; i < data.KeyCount; i++) {
+                    var obj = data.Contents[i];
+                    
+                    console.log(i, ": " + obj.Key)
+                    console.log(i, ": " + obj.LastModified)
+                    
                     if (oldest_datetime >= obj.LastModified) {
                         console.log(i, ": found older object");
                         oldest_datetime = obj.LastModified;
                         oldest_object = obj
                     }
                 }
+
+                const copyParams = {
+                    CopySource: "/" + params.Bucket + "/" + oldest_object.Key,
+                    Bucket: "mikesoh.com-galactica-backup",
+                Key: oldest_object.Key.replace(params.Prefix, 'mysql-backups')
+                };
+            
+                console.log('copyParams', copyParams);
+                //s3.copyObject(copyParams, function)    
+            } else {
+                console.log("No oldest object but the event object.")
             }
         }
     }).promise();
     
-    if (oldest_object) {
-        console.log("oldest_object: ", oldest_object.Key) 
-       
-        const copyParams = {
-            CopySource: "/" + params.Bucket + "/" + oldest_object.Key,
-            Bucket: "mikesoh.com-galactica-backup",
-        Key: oldest_object.Key.replace(params.Prefix, 'mysql-backups')
-        };
-    
-        console.log('copyParams', copyParams)
-        //s3.copyObject(copyParams, function)    
-    } else {
-        console.log("No oldest object but the event object.")
-    }
 };
