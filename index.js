@@ -60,7 +60,7 @@ exports.handler = async (event, context) => {
 
         console.log('copyParams', copyParams);
         await s3.copyObject(copyParams, function(copyErr, copyData) {
-            if (err) console.log(copyErr, copyErr.stack);
+            if (copyErr) console.log(copyErr, copyErr.stack);
             else console.log(copyData);
         }).promise();
     }
