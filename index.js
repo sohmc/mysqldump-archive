@@ -4,24 +4,31 @@ const s3 = new aws.S3({ apiVersion: '2006-03-01' });
 
 
 exports.handler = async (event, context) => {
-    //console.log('Received event:', JSON.stringify(event, null, 2));
+    console.log('Received event:', JSON.stringify(event, null, 2));
 
     // Get the object from the event and show its content type
     // const bucket = event.Records[0].s3.bucket.name;
     // const key = decodeURIComponent(event.Records[0].s3.object.key.replace(/\+/g, ' '));
     const params = {
         Bucket: "mikesoh.com-galactica-backup",
-        Prefix: "mysql-backups/latest",
-        StartAfter: "mysql-backups/latest/"
+        Prefix: "mysql-backups",
+        StartAfter: "mysql-backups"
     };
     
     console.log("Bucket: ", params.Bucket)
     console.log("Event Object: ", event.Records[0].s3.object.key)
     
+    const copyParams = {
+        CopySource: "/" + params.Bucket + "/" + oldest_object.Key,
+        Bucket: "mikesoh.com-galactica-backup",
+        Key: oldest_object.Key.replace(params.Prefix, 'mysql-backups'),
+        ServerSideEncryption: "AES256"
+    };
+
     // Use current date and time 
     var oldest_datetime = new Date();
     var oldest_object = null;
-    
+   /* 
     await s3.listObjectsV2(params, function(err, data) {
         if (err) {
             console.log("error", "There was an error")
@@ -63,5 +70,5 @@ exports.handler = async (event, context) => {
             if (copyErr) console.log(copyErr, copyErr.stack);
             else console.log(copyData);
         }).promise();
-    }
+    }*/
 };
