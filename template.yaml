@@ -1,0 +1,28 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+    mysqldump-archive
+
+    Archive old mysqldumps that are pushed to S3
+
+Globals:
+    Function:
+        Timeout: 3
+    
+Resources:
+    mysqldumparchive:
+        Type: AWS::Serverless::Function 
+        Properties:
+            Handler: index.handler
+            CodeUri: mysqldump-archive/
+            Runtime: nodejs8.10
+            Events:
+                BucketPutEvent:
+                    Type: S3
+                    Properties:
+                        Bucket: mikesoh.com-galactica-backup
+                        Events: 
+                            - "s3:ObjectCreated:*"
+                        Filter: 
+                            S3Key: mysql-backups/latest/
+

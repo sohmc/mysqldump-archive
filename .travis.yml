@@ -9,7 +9,7 @@ branches:
 
 deploy:
     provider: lambda
-    function_name: archive_mysqldumps
+    function_name: mysqldump-archive
     region: "us-east-1"
     role: "arn:aws:iam::426869176820:role/LambdaGalacticaS3"
     runtime: "nodejs8.10"
