@@ -48,7 +48,7 @@ exports.handler = async (event, context) => {
             console.log(data)
             console.log("Key Count: ", data.KeyCount)
 
-            var key_list = {};
+            var key_list = new Array();
             for (var i = 0; i < data.KeyCount; i++) {
                 var obj = data.Contents[i];
                 
@@ -73,7 +73,13 @@ exports.handler = async (event, context) => {
     
     console.log('DELETE: ', delete_keys);
     if (delete_keys) {
-
+        var deleteParams = {
+            Bucket: params.Bucket,
+            Delete: {
+                Objects: delete_keys
+            },
+            Quiet: false
+        };
     }
 
     foo("Done");
