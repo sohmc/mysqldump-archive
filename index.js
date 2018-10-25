@@ -23,7 +23,7 @@ exports.handler = async (event, context) => {
     const copyParams = {
         CopySource: "/" + event_record.s3.bucket + "/" + event_record.key,
         Bucket: event_record.s3.bucket,
-        Key: event_record.s3.key.replace('mysql-backups','mysql-backups/atest'),
+        Key: event_record.s3.object.key.replace('mysql-backups','mysql-backups/atest'),
         ServerSideEncryption: "AES256"
     };
 
