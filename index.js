@@ -15,16 +15,27 @@ exports.handler = async (event, context) => {
         StartAfter: "mysql-backups"
     };
     
-    console.log("Bucket: ", params.Bucket)
-    console.log("Event Object: ", event.Records[0].s3.object.key)
-   /*  
+    var event_record = event.Records[0];
+
+    console.log("Bucket: ", event_record.s3.bucket);
+    console.log("Event Object: ", event_record.s3.object.key)
+   
     const copyParams = {
-        CopySource: "/" + params.Bucket + "/" + oldest_object.Key,
-        Bucket: "mikesoh.com-galactica-backup",
-        Key: oldest_object.Key.replace(params.Prefix, 'mysql-backups'),
+        CopySource: "/" + event_record.s3.bucket + "/" + event_record.key,
+        Bucket: event_record.s3.bucket,
+        Key: event_record.s3.key.replace(params.Prefix, 'mysql-backups'),
         ServerSideEncryption: "AES256"
     };
 
+    console.log('copyParams', copyParams);
+    console.log('copyParams', copyParams);
+    await s3.copyObject(copyParams, function(copyErr, copyData) {
+        if (copyErr) console.log(copyErr, copyErr.stack);
+        else console.log(copyData);
+    }).promise();
+
+    foo("Done");
+/*  
     // Use current date and time 
     var oldest_datetime = new Date();
     var oldest_object = null;
@@ -72,3 +83,7 @@ exports.handler = async (event, context) => {
         }).promise();
     }*/
 };
+
+function foo(p) {
+    console.log('DEBUG: ', p)
+}
