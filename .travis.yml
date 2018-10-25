@@ -9,6 +9,7 @@ branches:
 
 script:
     - npm install lambda-tester --save-dev
+    - npm install mocha --save-dev
 
 deploy:
     provider: lambda

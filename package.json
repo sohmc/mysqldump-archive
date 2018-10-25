@@ -4,7 +4,7 @@
   "version": "0.1.0",
   "main": "index.js",
   "scripts": {
-    "test": "tests\unit\handler_check.js && exit 0"
+    "test": "mocha"
   },
   "repository": {
     "type": "git",
@@ -17,8 +17,11 @@
     "url": "https://github.com/sohmc/mysqldump-archive/issues"
   },
   "dependencies": {
-      "aws-sdk": "^2.0.0"
+    "aws-sdk": "^2.0.0"
   },
-
-  "homepage": "https://github.com/sohmc/mysqldump-archive"
+  "homepage": "https://github.com/sohmc/mysqldump-archive",
+  "devDependencies": {
+    "lambda-tester": "^3.5.0",
+    "mocha": "^5.2.0"
+  }
 }
