@@ -30,6 +30,9 @@ exports.handler = async (event, context) => {
         else console.log(copyData);
     }).promise();
 
+    console.log("COPY OBJECT: ", "Copy done.");
+    console.LOG("DELETE OBJECT: ", "About to go through the latest folder.");
+
     const params = {
         Bucket: copyParams.Bucket,
         Prefix: "mysql-backups/latest",
@@ -49,6 +52,8 @@ exports.handler = async (event, context) => {
                 
                 console.log(i, ": " + obj.Key)
                 console.log(i, ": " + obj.LastModified)
+
+                console.log(obj.Key.replace(params.Prefix, 'mysql-backups'), copyParams.Key);
 
                 if (obj.Key.replace(params.Prefix, 'mysql-backups') != copyParams.Key) {
                     console.log("DELETE: ", "Will delete " + obj.Key)
