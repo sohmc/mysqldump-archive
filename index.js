@@ -31,7 +31,7 @@ exports.handler = async (event, context) => {
     }).promise();
 
     console.log("COPY OBJECT: ", "Copy done.");
-    console.LOG("DELETE OBJECT: ", "About to go through the latest folder.");
+    console.log("DELETE OBJECT: ", "About to go through the latest folder.");
 
     const params = {
         Bucket: copyParams.Bucket,
