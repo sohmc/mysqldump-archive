@@ -28,14 +28,15 @@ exports.handler = async (event, context) => {
     };
 
     console.log('copyParams', copyParams);
-    console.log('copyParams', copyParams);
+    foo("Done");
+/*  
     await s3.copyObject(copyParams, function(copyErr, copyData) {
         if (copyErr) console.log(copyErr, copyErr.stack);
         else console.log(copyData);
     }).promise();
 
     foo("Done");
-/*  
+
     // Use current date and time 
     var oldest_datetime = new Date();
     var oldest_object = null;
