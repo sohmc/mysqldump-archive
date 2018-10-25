@@ -7,6 +7,9 @@ branches:
     only:
         - /.*/
 
+script:
+    - npm install lambda-tester --save-dev
+
 deploy:
     provider: lambda
     function_name: mysqldump-archive
