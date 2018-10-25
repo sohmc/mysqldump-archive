@@ -17,7 +17,7 @@ exports.handler = async (event, context) => {
     
     console.log("Bucket: ", params.Bucket)
     console.log("Event Object: ", event.Records[0].s3.object.key)
-    
+   /*  
     const copyParams = {
         CopySource: "/" + params.Bucket + "/" + oldest_object.Key,
         Bucket: "mikesoh.com-galactica-backup",
@@ -28,7 +28,7 @@ exports.handler = async (event, context) => {
     // Use current date and time 
     var oldest_datetime = new Date();
     var oldest_object = null;
-   /* 
+   
     await s3.listObjectsV2(params, function(err, data) {
         if (err) {
             console.log("error", "There was an error")
