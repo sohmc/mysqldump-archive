@@ -17,7 +17,7 @@ exports.handler = async (event, context) => {
   
     console.log("COPY OBJECT: ", "Got the file and about to copy it into latest...");
     const copyParams = {
-        CopySource: "/" + event_record.s3.bucket.name + "/" + event_record.key,
+        CopySource: "/" + event_record.s3.bucket.name + "/" + event_record.s3.object.key,
         Bucket: event_record.s3.bucket.name,
         Key: event_record.s3.object.key.replace('mysql-backups','mysql-backups/latest'),
         ServerSideEncryption: "AES256"
