@@ -54,10 +54,18 @@ exports.handler = async (event, context) => {
                 console.log(i, ": " + obj.LastModified)
 
                 console.log(obj.Key, copyParams.Key);
+                
+                var delete_keys = new Object();
 
                 if (obj.Key != copyParams.Key) {
-                    console.log("DELETE: ", "Will delete " + obj.Key)
+                    console.log("DELETE: ", "Will delete " + obj.Key);
+
+                    delete_keys.push({
+                        key: obj.Key
+                    });
                 }
+
+                console.log('DELETE: ', delete_keys);
             }
         }
     }).promise();
