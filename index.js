@@ -53,9 +53,9 @@ exports.handler = async (event, context) => {
                 console.log(i, ": " + obj.Key)
                 console.log(i, ": " + obj.LastModified)
 
-                console.log(obj.Key.replace(params.Prefix, 'mysql-backups'), copyParams.Key);
+                console.log(obj.Key, copyParams.Key);
 
-                if (obj.Key.replace(params.Prefix, 'mysql-backups') != copyParams.Key) {
+                if (obj.Key != copyParams.Key) {
                     console.log("DELETE: ", "Will delete " + obj.Key)
                 }
             }
