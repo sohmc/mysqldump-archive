@@ -39,6 +39,7 @@ exports.handler = async (event, context) => {
         StartAfter: "mysql-backups/latest/"
     };
 
+    var delete_keys = null;
     await s3.listObjectsV2(params, function(err, data) {
         if (err) {
             console.log("error", "There was an error")
@@ -47,6 +48,7 @@ exports.handler = async (event, context) => {
             console.log(data)
             console.log("Key Count: ", data.KeyCount)
 
+            var key_list = {};
             for (var i = 0; i < data.KeyCount; i++) {
                 var obj = data.Contents[i];
                 
@@ -55,20 +57,24 @@ exports.handler = async (event, context) => {
 
                 console.log(obj.Key, copyParams.Key);
                 
-                var delete_keys = new Object();
 
                 if (obj.Key != copyParams.Key) {
                     console.log("DELETE: ", "Will delete " + obj.Key);
 
-                    delete_keys.push({
+                    key_list.push({
                         key: obj.Key
                     });
                 }
-
-                console.log('DELETE: ', delete_keys);
             }
+
+            delete_keys = key_list;
         }
     }).promise();
+    
+    console.log('DELETE: ', delete_keys);
+    if (delete_keys) {
+
+    }
 
     foo("Done");
 /*  
