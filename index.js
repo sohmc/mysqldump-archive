@@ -42,9 +42,8 @@ exports.handler = async (event, context) => {
     var deleteParams = {
         Bucket: params.Bucket,
         Delete: {
-            Objects: [{}]
-        },
-        Quiet: false
+            Objects: []
+        }
     };
 
     await s3.listObjectsV2(params, function(err, data) {
@@ -77,13 +76,13 @@ exports.handler = async (event, context) => {
     }).promise();
    
     if (deleteParams.Delete.Objects.length > 0) {
-        console.log('DELETE: ', deleteParams);
+        console.log('DELETE: ', JSON.stringify(deleteParams, null, 2));
 
-        await s3.deleteObjects(deleteParams, function(deleteErr, deleteData) {
+/*        await s3.deleteObjects(deleteParams, function(deleteErr, deleteData) {
             if (deleteErr) console.log(deleteErr, deleteErr.stack);
             else console.log(deleteData);
         }).promise(); 
-    }
+    } */
 };
 
 function foo(p) {
