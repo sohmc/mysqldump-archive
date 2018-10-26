@@ -70,8 +70,7 @@ exports.handler = async (event, context) => {
             delete_keys = key_list;
         }
     }).promise();
-    
-    console.log('DELETE: ', delete_keys);
+   
     if (delete_keys) {
         var deleteParams = {
             Bucket: params.Bucket,
@@ -80,29 +79,14 @@ exports.handler = async (event, context) => {
             },
             Quiet: false
         };
-    }
 
-    foo("Done");
-/*  
-    // Use current date and time 
-    var oldest_datetime = new Date();
-    var oldest_object = null;
-   
-
-    if (oldest_object) {    
-        const copyParams = {
-            CopySource: "/" + params.Bucket + "/" + oldest_object.Key,
-            Bucket: "mikesoh.com-galactica-backup",
-            Key: oldest_object.Key.replace(params.Prefix, 'mysql-backups'),
-            ServerSideEncryption: "AES256"
-        };
-
-        console.log('copyParams', copyParams);
-        await s3.copyObject(copyParams, function(copyErr, copyData) {
+        console.log('DELETE: ', deleteParams);
+/*
+        await s3.deleteObjects(copyParams, function(copyErr, copyData) {
             if (copyErr) console.log(copyErr, copyErr.stack);
             else console.log(copyData);
-        }).promise();
-    }*/
+        }).promise(); 
+        */
 };
 
 function foo(p) {
