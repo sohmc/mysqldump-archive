@@ -79,9 +79,9 @@ exports.handler = async (event, context) => {
     if (deleteParams.Delete.Objects.length > 0) {
         console.log('DELETE: ', deleteParams);
 
-        await s3.deleteObjects(copyParams, function(copyErr, copyData) {
-            if (copyErr) console.log(copyErr, copyErr.stack);
-            else console.log(copyData);
+        await s3.deleteObjects(deleteParams, function(deleteErr, deleteData) {
+            if (deleteErr) console.log(deleteErr, deleteErr.stack);
+            else console.log(deleteData);
         }).promise(); 
     }
 };
