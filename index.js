@@ -81,8 +81,8 @@ exports.handler = async (event, context) => {
 /*        await s3.deleteObjects(deleteParams, function(deleteErr, deleteData) {
             if (deleteErr) console.log(deleteErr, deleteErr.stack);
             else console.log(deleteData);
-        }).promise(); 
-    } */
+        }).promise();  */
+    } 
 };
 
 function foo(p) {
