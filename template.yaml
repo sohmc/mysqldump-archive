@@ -22,7 +22,6 @@ Resources:
                     Properties:
                         Bucket: mikesoh.com-galactica-backup
                         Events: 
-                            - "s3:ObjectCreated:*"
+                            - "s3:ObjectCreated:Put"
                         Filter: 
-                            S3Key: mysql-backups/latest/
-
+                            S3Key: mysql-backups/
