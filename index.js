@@ -87,6 +87,7 @@ exports.handler = async (event, context) => {
             else console.log(copyData);
         }).promise(); 
         */
+    }
 };
 
 function foo(p) {
