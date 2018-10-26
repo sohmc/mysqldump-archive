@@ -57,6 +57,8 @@ exports.handler = async (event, context) => {
 
             var key_list = new Array();
             for (var i = 0; i < data.KeyCount; i++) {
+                var obj = data.Contents[i];
+
                 console.log(i, ": " + obj.Key)
                 console.log(i, ": " + obj.LastModified)
 
