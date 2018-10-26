@@ -78,10 +78,10 @@ exports.handler = async (event, context) => {
     if (deleteParams.Delete.Objects.length > 0) {
         console.log('DELETE: ', JSON.stringify(deleteParams, null, 2));
 
-/*        await s3.deleteObjects(deleteParams, function(deleteErr, deleteData) {
+        await s3.deleteObjects(deleteParams, function(deleteErr, deleteData) {
             if (deleteErr) console.log(deleteErr, deleteErr.stack);
             else console.log(deleteData);
-        }).promise();  */
+        }).promise();
     } 
 };
 
