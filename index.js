@@ -84,7 +84,3 @@ exports.handler = async (event, context) => {
         }).promise();
     } 
 };
-
-function foo(p) {
-    console.log('DEBUG: ', p)
-}
