@@ -69,7 +69,7 @@ exports.handler = async (event, context) => {
                     console.log("DELETE: ", "Will delete " + obj.Key);
 
                     deleteParams.Delete.Objects.push({
-                        key: obj.Key
+                        Key: obj.Key
                     });
                 }
             }
