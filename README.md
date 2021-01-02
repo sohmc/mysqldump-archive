@@ -3,11 +3,9 @@
 This is a lambda script that is designed to run when new files are `PUT`
 into a S3 bucket.  Oldest file is put in a seperate S3 bucket location.
 
+## This repository is no longer maintained
 
-## Build status
-
-* `master`: ![travis-ci build of
-master](https://travis-ci.org/sohmc/mysqldump-archive.svg?branch=master)
+S3 replication was made possible directly through the interface and this script is now deprecated.
 
 ## Licenses
 
